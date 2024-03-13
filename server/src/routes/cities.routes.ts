@@ -1,9 +1,13 @@
 import { Router } from 'express'
-import citiesList from '../db/cities.db.json'
+
 import citiesController from '../controllers/cities.controller'
 
 const citiesRoute = Router({ mergeParams: true })
 
 citiesRoute.get('/', citiesController.getAll)
+
+citiesRoute.post('/', citiesController.create)
+
+citiesRoute.delete('/', citiesController.delete)
 
 export default citiesRoute

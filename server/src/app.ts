@@ -6,6 +6,7 @@ const app = express()
 const PORT: number = 8088
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.use('/api', router)
 
 async function start(): Promise<void> {
