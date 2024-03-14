@@ -1,11 +1,6 @@
 import { Request, Response } from 'express'
 import databaseService from '../db/db.service'
-
-interface ICity {
-  name: string
-  value: string
-  foundedAt: string
-}
+import { ICity } from '../types/types'
 
 const citiesController = {
   getAll: async (req: Request, res: Response) => {
@@ -21,7 +16,8 @@ const citiesController = {
   create: async (req: Request, res: Response) => {
     try {
       const newCity = req.body
-      const cities = await databaseService.getFileData('cities.db.json')
+      const cities: ICity[] =
+        await databaseService.getFileData('cities.db.json')
       cities.push(newCity)
       await databaseService.writeDataToFile('cities.db.json', cities)
       res.status(201).send({ message: 'Город успешно добавлен', city: newCity })
@@ -34,9 +30,10 @@ const citiesController = {
   delete: async (req: Request, res: Response) => {
     try {
       const cityToDelete = req.body.value
-      const cities = await databaseService.getFileData('cities.db.json')
+      const cities: ICity[] =
+        await databaseService.getFileData('cities.db.json')
       const filteredCities = cities.filter(
-        (city: ICity) => city.value !== cityToDelete
+        (city) => city.value !== cityToDelete
       )
       if (filteredCities.length < cities.length) {
         await databaseService.writeDataToFile('cities.db.json', filteredCities)
