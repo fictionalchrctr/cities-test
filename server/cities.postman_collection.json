@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "10525560-7a1e-4de2-aafa-887c995b48e1",
+		"name": "cities",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26827254"
+	},
+	"item": [
+		{
+			"name": "cities",
+			"item": [
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8088/api/cities/"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Стокгольм\",\r\n    \"value\": \"stockgolm\",\r\n    \"foundedAt\": \"1252 год\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8088/api/cities/"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8088/api/cities/cityValue"
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8088/api/cities/cityValue"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lists",
+			"item": [
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8088/api/lists"
+					},
+					"response": []
+				},
+				{
+					"name": "createList",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shortName\": \"42\",\r\n    \"fullName\": \"42\",\r\n    \"color\": \"black\",\r\n    \"cities\": [{ \"name\": \"42\", \"value\": \"42\", \"foundedAt\": \"2024 год\" }]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8088/api/cities"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
