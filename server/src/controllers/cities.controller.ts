@@ -68,14 +68,6 @@ const citiesController = {
 
       await databaseService.writeDataToFile('cities.db.json', updatedCitiesList)
       res.status(200).json({ message: 'Данные города успешно обновлены' })
-      // const updatedCitiesList = cities.map((city: ICity) => {
-      //   if (city.value === cityValue) {
-      //     return { ...city, ...updatedCityData }
-      //   }
-      //   return city
-      // })
-      // await databaseService.writeDataToFile('cities.db.json', updatedCitiesList)
-      res.status(200).json({ message: 'Данные города успешно обновлены' })
     } catch (error) {
       res.status(500).json({ message: 'Ошибка при обновлении данных города' })
     }
