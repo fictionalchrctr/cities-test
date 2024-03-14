@@ -8,7 +8,7 @@ citiesRoute.get('/', citiesController.getAll)
 
 citiesRoute.post('/', citiesController.create)
 
-citiesRoute.delete('/', citiesController.delete)
+citiesRoute.delete('/:cityValue', citiesController.delete)
 
 citiesRoute.patch('/:cityValue', citiesController.edit)
 

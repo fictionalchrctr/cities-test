@@ -1,8 +1,1 @@
-[
-  { "name": "Париж", "value": "paris", "foundedAt": "III век до н.э." },
-  { "name": "Вена", "value": "wien", "foundedAt": "1147 год" },
-  { "name": "Берлин", "value": "berlin", "foundedAt": "1237 год" },
-  { "name": "Варшава", "value": "warszawa", "foundedAt": "1321 год" },
-  { "name": "Милан", "value": "milan", "foundedAt": "1899 год" },
-  { "name": "Мурманск", "value": "msk", "foundedAt": "1916 год" }
-]
+[{"name":"Париж","value":"paris","foundedAt":"III век до н.э."},{"name":"Вена","value":"wien","foundedAt":"1147 год"},{"name":"Берлин","value":"berlin","foundedAt":"1237 год"},{"name":"Варшава","value":"warszawa","foundedAt":"1321 год"},{"name":"Милан","value":"milan","foundedAt":"1899 год"}]
