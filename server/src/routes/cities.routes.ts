@@ -10,4 +10,6 @@ citiesRoute.post('/', citiesController.create)
 
 citiesRoute.delete('/', citiesController.delete)
 
+citiesRoute.patch('/:cityValue', citiesController.edit)
+
 export default citiesRoute

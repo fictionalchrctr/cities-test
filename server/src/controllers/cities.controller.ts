@@ -1,14 +1,17 @@
 import { Request, Response } from 'express'
-import citiesList from '../db/cities.db.json'
-import fs from 'fs'
-import path from 'path'
+import databaseService from '../db/db.service'
 
-const dbFilePath = path.resolve(__dirname, '../db/cities.db.json')
+interface ICity {
+  name: string
+  value: string
+  foundedAt: string
+}
 
 const citiesController = {
   getAll: async (req: Request, res: Response) => {
     try {
-      return res.status(200).send(citiesList)
+      const cities = await databaseService.getFileData('cities.db.json')
+      return res.status(200).send(cities)
     } catch (error) {
       res.status(500).json({
         message: 'На сервере произошла ошибка. Попробуйте позже!'
@@ -18,14 +21,10 @@ const citiesController = {
   create: async (req: Request, res: Response) => {
     try {
       const newCity = req.body
-      console.log('req.body', req.body)
-
-      console.log('newCity', newCity)
-
-      citiesList.push(newCity)
-      fs.writeFileSync(dbFilePath, JSON.stringify(citiesList, null, 2))
+      const cities = await databaseService.getFileData('cities.db.json')
+      cities.push(newCity)
+      await databaseService.writeDataToFile('cities.db.json', cities)
       res.status(201).send({ message: 'Город успешно добавлен', city: newCity })
-      console.log('citiesList', citiesList)
     } catch (error) {
       res.status(500).json({
         message: 'Ошибка при добавлении города'
@@ -35,16 +34,15 @@ const citiesController = {
   delete: async (req: Request, res: Response) => {
     try {
       const cityToDelete = req.body.value
-      console.log('req.body', req.body.value)
-      const filteredCities = citiesList.filter((c) => c.value !== cityToDelete)
-      console.log('filteredCities', filteredCities)
-
-      if (filteredCities.length < citiesList.length) {
-        fs.writeFileSync(dbFilePath, JSON.stringify(filteredCities))
+      const cities = await databaseService.getFileData('cities.db.json')
+      const filteredCities = cities.filter(
+        (city: ICity) => city.value !== cityToDelete
+      )
+      if (filteredCities.length < cities.length) {
+        await databaseService.writeDataToFile('cities.db.json', filteredCities)
         res
           .status(200)
           .json({ message: 'Город успешно удален', city: cityToDelete })
-        console.log('filteredCities', filteredCities)
       } else {
         res.status(404).json({ message: 'Город не найден' })
       }
@@ -52,6 +50,23 @@ const citiesController = {
       res.status(500).json({
         message: 'Ошибка при удалении города'
       })
+    }
+  },
+  edit: async (req: Request, res: Response) => {
+    try {
+      const cityValue = req.params.cityValue
+      const updatedCityData = req.body
+      const cities = await databaseService.getFileData('cities.db.json')
+      const updatedCitiesList = cities.map((city: ICity) => {
+        if (city.value === cityValue) {
+          return { ...city, ...updatedCityData }
+        }
+        return city
+      })
+      await databaseService.writeDataToFile('cities.db.json', updatedCitiesList)
+      res.status(200).json({ message: 'Данные города успешно обновлены' })
+    } catch (error) {
+      res.status(500).json({ message: 'Ошибка при обновлении данных города' })
     }
   }
 }
