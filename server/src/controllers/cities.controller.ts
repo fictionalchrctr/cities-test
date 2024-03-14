@@ -54,13 +54,27 @@ const citiesController = {
       const cityValue = req.params.cityValue
       const updatedCityData = req.body
       const cities = await databaseService.getFileData('cities.db.json')
+      const cityExists = cities.some((city: ICity) => city.value === cityValue)
+      if (!cityExists) {
+        return res.status(400).json({ message: 'Такого города не существует' })
+      }
+
       const updatedCitiesList = cities.map((city: ICity) => {
         if (city.value === cityValue) {
           return { ...city, ...updatedCityData }
         }
         return city
       })
+
       await databaseService.writeDataToFile('cities.db.json', updatedCitiesList)
+      res.status(200).json({ message: 'Данные города успешно обновлены' })
+      // const updatedCitiesList = cities.map((city: ICity) => {
+      //   if (city.value === cityValue) {
+      //     return { ...city, ...updatedCityData }
+      //   }
+      //   return city
+      // })
+      // await databaseService.writeDataToFile('cities.db.json', updatedCitiesList)
       res.status(200).json({ message: 'Данные города успешно обновлены' })
     } catch (error) {
       res.status(500).json({ message: 'Ошибка при обновлении данных города' })
