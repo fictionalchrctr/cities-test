@@ -10,10 +10,21 @@ const databaseService = {
     try {
       const filePath = join(__dirname, fileName)
       const data = await readFileAsync(filePath, 'utf-8')
+      console.log('data', data)
+
       return JSON.parse(data)
     } catch (err) {
       throw err
     }
+    // return new Promise((resolve, reject) => {
+    //   fs.readFile(join(__dirname, fileName), 'utf-8', (err, data) => {
+    //     if (err) {
+    //       reject(err)
+    //     } else {
+    //       resolve(JSON.parse(data))
+    //     }
+    //   })
+    // })
   },
   writeDataToFile: async (fileName: string, data: unknown) => {
     try {
