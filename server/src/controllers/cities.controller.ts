@@ -29,8 +29,6 @@ const citiesController = {
   },
   delete: async (req: Request, res: Response) => {
     try {
-      console.log('req.params', req.params)
-
       const cityToDelete = req.params.cityValue
       const cities: ICity[] =
         await databaseService.getFileData('cities.db.json')
