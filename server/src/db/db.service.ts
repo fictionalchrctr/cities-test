@@ -16,15 +16,6 @@ const databaseService = {
     } catch (err) {
       throw err
     }
-    // return new Promise((resolve, reject) => {
-    //   fs.readFile(join(__dirname, fileName), 'utf-8', (err, data) => {
-    //     if (err) {
-    //       reject(err)
-    //     } else {
-    //       resolve(JSON.parse(data))
-    //     }
-    //   })
-    // })
   },
   writeDataToFile: async (fileName: string, data: unknown) => {
     try {
