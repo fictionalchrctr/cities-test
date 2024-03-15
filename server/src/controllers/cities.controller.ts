@@ -29,6 +29,8 @@ const citiesController = {
   },
   delete: async (req: Request, res: Response) => {
     try {
+      console.log('req.params', req.params)
+
       const cityToDelete = req.params.cityValue
       const cities: ICity[] =
         await databaseService.getFileData('cities.db.json')
@@ -51,8 +53,8 @@ const citiesController = {
   },
   edit: async (req: Request, res: Response) => {
     try {
-      const cityValue = req.params.cityValue
       const updatedCityData = req.body
+      const cityValue = updatedCityData.value
       const cities = await databaseService.getFileData('cities.db.json')
       const cityExists = cities.some((city: ICity) => city.value === cityValue)
       if (!cityExists) {
