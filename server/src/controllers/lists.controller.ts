@@ -6,7 +6,6 @@ const listsController = {
   getAll: async (req: Request, res: Response) => {
     try {
       const lists = await databaseService.getFileData('lists.db.json')
-      console.log('lists get', lists)
 
       return res.status(200).send(lists)
     } catch (error) {
@@ -20,7 +19,6 @@ const listsController = {
       const newList = req.body
       const lists: IList[] = await databaseService.getFileData('lists.db.json')
       lists.push(newList)
-      console.log('lists create', lists)
 
       await databaseService.writeDataToFile('lists.db.json', lists)
       res
