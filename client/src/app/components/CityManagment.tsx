@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './CityManagment.module.css'
 import citiesService from '../service/cities.service'
-
-interface ICity {
-  name: string
-  value: string
-  foundedAt: string
-}
+import { ICity } from '../types/types'
 
 const CityManagement: React.FC = () => {
   const newCityInitialState = {

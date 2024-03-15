@@ -1,13 +1,8 @@
 import config from '../../config.json'
+import { ICity } from '../types/types'
 import httpService from './http.service'
 
 const url = config.apiEndpoint + '/cities'
-
-interface ICity {
-  name: string
-  value: string
-  foundedAt: string
-}
 
 const citiesService = {
   fetchAllCities: async () => {
